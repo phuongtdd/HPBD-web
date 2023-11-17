@@ -5,19 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chúc mừng sinh nhật!</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            
+            background: url(https://photo2.tinhte.vn/data/attachment-files/2023/02/6332897_Cover_HL.jpg) no-repeat center center fixed;
+            
+            background-size: cover;
+         
+            background-color: #f0f0f0;
+           
+            color: #333;
+            
+        }
+    </style>
+
+    <script src="function.js"></script>
+
+    
 </head>
 <body>
     <div class="birthday-card" id="birthdayCard" onclick="revealMessage()">
         <div class="greeting">
-            <h1>Chúc mừng sinh nhật!</h1>
-            <p>Chúc mừng BO VG đã thêm một tuổi mới! Jenny Huynh chuc anh hanh phuc ben nguoi moi nhe.</p>
+            <h1>Hỡi tên học viên nhà Hufflepuff kia!</h1>
+            <p>Ta có một nhiệm vụ cho ngươi, hãy ấn vào ô bên dưới để nhận nhiệm vụ...Ấn vào Hedwig và mở volume.</p>
         </div>
-        <img src="https://vcdn-thethao.vnecdn.net/2023/08/10/361930212-774446801353926-8825-8041-6932-1691639677.jpg" alt="NYC" width="100" height="100">
+        <img src="media/muphanloai.png" alt="NYC" width="100" height="100">
         <div class="interactive-message" id="interactiveMessage">
-            <p>🎉 Nhấp để mở quà 🎁</p>
+            <p>Thông báo này sẽ tự đóng sau 5s.</p>
         </div>
         <div class="hidden-message" id="hiddenMessage">
-            <p>🎊Ban da thanh cong co first love dau doi, NTVG </p>
+            <p>Hãy tìm biểu tượng của nhà Hufflepuff trong website...</p>
         </div>
     </div>
 
@@ -28,7 +46,64 @@
 
             interactiveMessage.style.display = "none";
             hiddenMessage.style.display = "block";
+
+            setTimeout(function() {
+                birthdayCard.style.display = "none";
+            }, 5000);
         }
     </script>
+
+    <img id="audioIcon" src="media/hedwig.png" alt="Biểu tượng âm thanh"> 
+    
+    <audio id="audioPlayer" controls style="display: none;" >
+        <source src= "media/hpt.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        // Lấy tham chiếu đến các phần tử
+        const audioIcon = document.getElementById('audioIcon');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        // Bắt sự kiện nhấp chuột vào biểu tượng
+        audioIcon.addEventListener('click', function() {
+            // Kiểm tra trạng thái của audio và thay đổi nếu cần
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+        });
+    </script>
+     
+     <img id="birthdayIcon" src="media/lm.png" alt="Biểu tượng" onclick="showBirthdayWish()">
+
+     <div id="wishContainer">
+        Sinh nhật zui zẻ
+    </div>
+
+    <script>
+        // Hàm hiển thị lời chúc khi click vào biểu tượng
+        function showBirthdayWish() {
+            const wishContainer = document.getElementById('wishContainer');
+            const birthdayIcon = document.getElementById('birthdayIcon');
+
+            // Hiển thị lời chúc
+            wishContainer.style.display = 'block';
+
+            // Thay đổi kích thước của biểu tượng
+            birthdayIcon.style.transform = 'scale(1.2)';
+
+            // Ẩn lời chúc sau một khoảng thời gian
+            setTimeout(() => {
+                wishContainer.style.display = 'none';
+                // Khôi phục kích thước của biểu tượng
+                birthdayIcon.style.transform = 'scale(1)';
+            }, 3000); // Hiển thị lời chúc trong 3 giây
+        }
+    </script>
+
+
+   
+     
 </body>
 </html>
